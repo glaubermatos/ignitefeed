@@ -1,0 +1,12 @@
+.header {
+    background: var(--gray-800);
+    padding: 1.25rem 0;
+    color: var(--gray-100);
+    font-size: 1.625rem;
+    font-weight: 700;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
