@@ -1,5 +1,6 @@
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
+import { useState } from 'react';
 
 import { Avatar } from './Avatar';
 import { Comment } from './Comment';
@@ -7,6 +8,9 @@ import { Comment } from './Comment';
 import styles from './Post.module.css';
 
 export function Post({author, content, publishedAt}) {
+    const [comments, setComments] = useState(["Post muito bacana, hein?!"])
+    const [newCommentText, setNewCommentText] = useState('')
+
     const publishedAtDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
         locale: ptBR
     })
@@ -15,6 +19,17 @@ export function Post({author, content, publishedAt}) {
         locale: ptBR,
         addSuffix: true
     })
+
+    function handleCreateNewComment() {
+        event.preventDefault()
+
+        setComments([...comments, newCommentText])
+        setNewCommentText('')
+    }
+
+    function handleNewCommentChange() {
+        setNewCommentText(event.target.value)
+    }
 
     return (
         <article className={styles.post}>
@@ -36,7 +51,7 @@ export function Post({author, content, publishedAt}) {
                 {content.map(line => {
                     if (line.type === 'paragraph') {
                         return <p>{line.content}</p>
-                        
+
                     } else if (line.type === 'link') {
                         return <p><a href='#'>{line.content}</a></p>
                     }
@@ -49,26 +64,31 @@ export function Post({author, content, publishedAt}) {
                 </p> */}
             </div>
 
-            <form action="#" className={styles.commentForm}>
+            <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
                 <strong>Deixe seu feedback</strong>
 
                 <textarea 
                     placeholder="Deixe seu comentário."
+                    value={newCommentText}
+                    onChange={handleNewCommentChange}
                 />
 
                 <footer>
                     <button type="submit">
                         Comentar
                     </button>
-                    
                 </footer>
 
             </form>
 
             <div className={styles.commentList}>
-                <Comment />
-                <Comment />
-                <Comment />
+                {comments.map(comment => {
+                    return (
+                        <Comment
+                            content={comment}
+                        />
+                    )
+                })}
             </div>
 
         </article>
