@@ -23,7 +23,7 @@ export function ModalDeleteComment({ isOpen, onCloseModal, onDeleteComment, comm
                 <footer>
                     <button
                         onClick={onCloseModal}
-                        autoFocus
+                        // autoFocus
                     >
                         Cancelar
                     </button>

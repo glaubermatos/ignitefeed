@@ -6,6 +6,7 @@
     left: 0;
 
     /* z-index: 10; */
+    overflow-y: hidden;
 
     background: rgba(0, 0, 0, 0.75);
 
@@ -69,7 +70,7 @@
 
 .modalBody footer button.danger:hover {
      background: var(--red-500);
-     color: var(--gray-100);
+     color: var(--white);
 }
 
 .modalBody footer button + button {
