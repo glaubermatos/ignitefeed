@@ -13,6 +13,7 @@ export function ModalDeleteComment({ isOpen, onCloseModal, onDeleteComment, comm
             onRequestClose={onCloseModal}
             overlayClassName={styles.reactModalOverlay}
             className={styles.reactModalContent}
+            closeTimeoutMS={200}
         >
             <div className={styles.modalBody}>
                 <h2>Excluir comentário</h2>
