@@ -1,10 +1,16 @@
 import { ThumbsUp, Trash } from 'phosphor-react';
 import { useState } from 'react';
 import { Avatar } from './Avatar';
+
+import { ModalDeleteComment } from './ModalDeleteComment';
+
 import styles from './Comment.module.css';
 
 export function Comment({content, onDeleteComment}) {
     const [likeCount, setLikeCount] = useState(0)
+    const [isOpenModalDeleteComment, setIsOpenModalDeleteComment] = useState(false)
+
+    const [commentForDeletion, setCommentForDeletion] = useState(null)
 
     function handleDeleteComment(comment) {
         onDeleteComment(comment)
@@ -18,9 +24,19 @@ export function Comment({content, onDeleteComment}) {
         })
     }
 
+    function openModalDeleteComment(content) {
+        setIsOpenModalDeleteComment(true)
+        setCommentForDeletion(content)
+    }
+
+    function closeModalDeleteComment() {
+        setIsOpenModalDeleteComment(false)
+    }
+
     const hasLikes = likeCount > 0
 
     return (
+        <>
         <div className={styles.comment}>
             <Avatar hasBorder={false} src="https://github.com/glaubermatos.png" />
 
@@ -34,7 +50,8 @@ export function Comment({content, onDeleteComment}) {
 
                         <button
                             title="Deletar comentário"
-                            onClick={() => handleDeleteComment(content)}
+                            // onClick={() => handleDeleteComment(content)}
+                            onClick={() => openModalDeleteComment(content)}
                         >
                             <Trash size={24} />
                         </button>
@@ -44,12 +61,20 @@ export function Comment({content, onDeleteComment}) {
                 </div>
 
                 <footer>
-                    <button className={hasLikes && styles.active} onClick={handleLikeComment}>
+                    <button className={hasLikes ? styles.active : ''} onClick={handleLikeComment}>
                         <ThumbsUp size={24} />
                         Aplaudir <span>{likeCount}</span>
                     </button>
                 </footer>
             </div>
         </div>
+
+        <ModalDeleteComment
+            isOpen={isOpenModalDeleteComment}
+            onCloseModal={closeModalDeleteComment}
+            onDeleteComment={handleDeleteComment}
+            commentForDeletion={commentForDeletion}
+        />
+        </>
     )
 }

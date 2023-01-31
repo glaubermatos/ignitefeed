@@ -1,0 +1,77 @@
+.reactModalOverlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    /* z-index: 10; */
+
+    background: rgba(0, 0, 0, 0.75);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reactModalContent {
+    width: min(27rem, 90%);
+    background: var(--gray-800);
+    border-radius: 0.3125rem;
+    padding: 1.5rem 2rem 2rem;
+}
+
+.modalBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.modalBody h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--gray-100);
+}
+
+.modalBody p {
+    max-width: 15rem;
+    line-height: 1.6;
+    color: var(--gray-300);
+    text-align: center;
+}
+
+.modalBody footer button {
+     height: 3rem;
+     border-radius: 8px;
+     padding: 0 2rem;
+     background: transparent;
+     border: 0;
+     font-size: 0.875rem;
+     font-weight: bold;
+     cursor: pointer;
+     color: var(--gray-100);
+
+     transition: background 0.2s, color 0.2s;
+}
+
+.modalBody footer button:not(.danger):hover {
+     background: var(--gray-700);
+     color: var(--gray-100);
+}
+
+.modalBody footer button.danger {
+     background: var(--gray-700);
+     color: var(--red-500);
+}
+
+.modalBody footer button.danger:hover {
+     background: var(--red-500);
+     color: var(--gray-100);
+}
+
+.modalBody footer button + button {
+    margin-left: 0.5rem;
+}

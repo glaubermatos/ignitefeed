@@ -45,6 +45,7 @@ export function Post({author, content, publishedAt}) {
     const isNewCommentEmpty = newCommentText.trim().length === 0
 
     return (
+        <>
         <article className={styles.post}>
             <header>
                 <div className={styles.author}>
@@ -109,5 +110,6 @@ export function Post({author, content, publishedAt}) {
             </div>
 
         </article>
+        </>
     )
 }

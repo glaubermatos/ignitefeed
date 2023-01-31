@@ -1,10 +1,13 @@
 import { Header } from "./components/Header";
 import { Post } from "./components/Post";
 import { Sidebar } from "./components/Sidebar";
+import ReactModal from 'react-modal'
 
 import './global.css'
 
 import styles from './App.module.css'
+
+ReactModal.setAppElement('#root')
 
 const posts = [{
   id: 1,
